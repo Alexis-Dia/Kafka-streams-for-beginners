@@ -1,5 +1,6 @@
 package com;
 
+import com.utils.InputUtil;
 import io.confluent.developer.avro.TicketSale;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
 import org.apache.kafka.common.serialization.Serdes;
@@ -12,6 +13,9 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.CountDownLatch;
 
@@ -76,6 +80,10 @@ public class AvroAggregatingCountReader {
         builder.stream(outputTopic, Consumed.with(WindowedSerdes.timeWindowedSerdeFrom(String.class), Serdes.Long()))
                 // Set key to title and value to ticket value
                 .foreach((key, value) -> {
+                    LocalDateTime localDate = LocalDateTime.now();
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("H:mm:ss");
+                    String formattedString = localDate.format(formatter);
+                    InputUtil.write("inputProduct.txt", "key = " + key + ", value = " + value + ", time = " + formattedString);
                     System.out.println("key = " + key + ", value = " + value);
                 });
         Topology build = builder.build();
