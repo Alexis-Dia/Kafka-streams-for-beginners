@@ -42,7 +42,7 @@ public class AvroTopicPoller {
                     .setHeader(KafkaHeaders.MESSAGE_KEY, title)
                     .build();
 
-            // publish to `movie-ticket-sales` Kafka topic
+            // publish to `movie-tickets-sales` Kafka topic
             kafkaTemplate.send(message);
 
             logger.info("Published latest data to Kafka.");
@@ -64,7 +64,7 @@ class ScheduleFeedPoller {
     @Autowired
     KafkaTemplate<String, TicketSale> kafkaTemplate;
 
-    @Scheduled(cron = "*/10 * * * * *")
+    //@Scheduled(cron = "*/10 * * * * *")
     private void pullDataToTopic() {
         try {
             logger.info("Getting latest data.");
@@ -83,10 +83,10 @@ class ScheduleFeedPoller {
                     .setHeader(KafkaHeaders.MESSAGE_KEY, title)
                     .build();
 
-            // publish to `movie-ticket-sales` Kafka topic
+            // publish to `movie-tickets-sales` Kafka topic
             kafkaTemplate.send(message);
 
-            logger.info("Published latest data to Kafka.");
+            logger.info("Published latest data to Kafka topic " + inputTopicName + ".");
         } catch (Exception e) {
             logger.error(e.getMessage());
         }

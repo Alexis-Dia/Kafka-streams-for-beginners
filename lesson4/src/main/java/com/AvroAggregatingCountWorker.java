@@ -95,6 +95,8 @@ public class AvroAggregatingCountWorker {
                 .map((k, v) -> new KeyValue<>(v.getTitle().toString(), v.getTicketTotalValue()))
                 .groupByKey(Grouped.with(Serdes.String(), Serdes.Integer()))
                 .windowedBy(TimeWindows.of(Duration.ofMinutes(2)))
+                //.windowedBy(SessionWindows.with(Duration.ofMinutes(2)).grace(Duration.ofMinutes(2)))
+                //.windowedBy(SessionWindows.with(Duration.ofMinutes(2)))
                 .count(Materialized.with(Serdes.String(), Serdes.Long()))
                 .toStream()
                 .to(outputTopicName, Produced.with(WindowedSerdes.sessionWindowedSerdeFrom(String.class), Serdes.Long()));

@@ -22,6 +22,7 @@ import java.util.concurrent.CountDownLatch;
 import static io.confluent.kafka.serializers.AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG;
 import static org.apache.kafka.clients.consumer.ConsumerConfig.AUTO_OFFSET_RESET_CONFIG;
 
+//TODO: AvroAggregatingCountReader needs to be fixed because he doesn't upload data at the real time.
 @Component
 @PropertySource("classpath:application.properties")
 public class AvroAggregatingCountReader {
