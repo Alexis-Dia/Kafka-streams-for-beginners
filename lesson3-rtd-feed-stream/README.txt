@@ -9,3 +9,8 @@
 Source code:
     https://www.youtube.com/watch?v=yIFOCYy7Wmc&t=486s&ab_channel=AlexWoolford
     https://github.com/alexwoolford/rtd-kafka
+
+1. Установка Kafka Connect Elasticsearch - https://sematext.com/blog/kafka-connect-elasticsearch-how-to/
+2. Установка Elasticsearch 7 - https://computingforgeeks.com/install-elasticsearch-on-ubuntu/
+3. Установить Java 11
+4. bin/connect-standalone.sh config/connect-standalone.properties config/elasticsearch-connect.properties
