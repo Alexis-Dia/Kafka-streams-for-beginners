@@ -1,5 +1,6 @@
 Смысл примера автора заключается в том, что он читает из кафка топика в авро-формате, потом трансормирует информацию и отправляет в другой топик. Потом с помощью коннекторов скидывает для визуализации в Elasticsearch.
 Для лучшей наглядности лучше скачать оригинальные исходники автора.
+Все конфиги кафки kafka_2.13-2.6.0 смотри в lesson4 в папке config.
 
 1. To build the BusPosition Avro object, you need to run mvn generate-sources, and then you should be able to build the project.
 2. run schema-registry server - ./bin/schema-registry-start ./etc/schema-registry/schema-registry.properties
