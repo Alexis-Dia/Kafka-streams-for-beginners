@@ -18,5 +18,7 @@ From kafka_2.13-2.6.0:
 From confluent-6.1.0:
     ./bin/schema-registry-start ./etc/schema-registry/schema-registry.properties
 
+Все конфиги кафки kafka_2.13-2.6.0 смотри в lesson4 в папке config.
+
 TODO: AvroAggregatingCountReader needs to be fixed because he doesn't upload data at the real time.
 Use KafkaConsumerConfigReader for reading data from topics then AvroAggregatingCountReader because AvroAggregatingCountReader needs to be fixed.
