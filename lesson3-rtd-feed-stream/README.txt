@@ -19,3 +19,4 @@ Source code:
 2. Установка Elasticsearch 7 - https://computingforgeeks.com/install-elasticsearch-on-ubuntu/
 3. Установить Java 11
 4. bin/connect-standalone.sh config/connect-standalone.properties config/elasticsearch-connect.properties
+5. Установка Elasticsearch 7 + Kibana - https://phoenixnap.com/kb/how-to-install-elk-stack-on-ubuntu
