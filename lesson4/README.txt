@@ -22,3 +22,9 @@ From confluent-6.1.0:
 
 TODO: AvroAggregatingCountReader needs to be fixed because he doesn't upload data at the real time.
 Use KafkaConsumerConfigReader for reading data from topics then AvroAggregatingCountReader because AvroAggregatingCountReader needs to be fixed.
+
+1. Установка Kafka Connect Elasticsearch - https://sematext.com/blog/kafka-connect-elasticsearch-how-to/
+2. Установка Elasticsearch 7 - https://computingforgeeks.com/install-elasticsearch-on-ubuntu/
+3. Установить Java 11
+4. bin/connect-standalone.sh config/connect-standalone.properties config/elasticsearch-connect.properties
+5. Установка Elasticsearch 7 + Kibana - https://phoenixnap.com/kb/how-to-install-elk-stack-on-ubuntu
