@@ -1,9 +1,5 @@
 package matchFunction;
 
-//? Maybe here we should use import static org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.deser.DataFormatReaders.*;
-//import static org.apache.flink.shaded.jackson2.com.fasterxml.jackson.databind.deser.DataFormatReaders.*;
-//import com.sun.org.apache.xerces.internal.impl.xpath.regex.Match;
-
 import dto.Like;
 import dto.Match;
 import org.apache.flink.api.common.state.ValueState;
@@ -13,8 +9,10 @@ import org.apache.flink.streaming.api.functions.KeyedProcessFunction;
 import org.apache.flink.util.Collector;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
+import java.util.concurrent.TimeUnit;
 
 /**
  * https://stackoverflow.com/questions/72139591/apache-flink-stream-event-delay
@@ -34,10 +32,12 @@ public class MatchFunction extends KeyedProcessFunction<String, Like, Match> {
         if (matched != null) {
             liked.clear();
             context.timerService().deleteEventTimeTimer(like.getEventTime().toInstant(ZoneOffset.UTC).toEpochMilli());
-            out.collect(new Match(like.getBoyId(), like.getGirlId(), LocalDateTime.now()));
+            Match match = new Match(like.getBoyId(), like.getGirlId(), LocalDateTime.now());
+            out.collect(match);
+            System.out.println("Match = " + match);
         } else {
             liked.update(true);
-            context.timerService().registerEventTimeTimer(like.getEventTime().toInstant(ZoneOffset.UTC).toEpochMilli());
+            context.timerService().registerEventTimeTimer(like.getEventTime().toInstant(ZoneOffset.UTC).toEpochMilli() + Duration.ofMinutes(1l).toMillis());
         }
     }
 
